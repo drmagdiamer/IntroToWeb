@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Variable Example 2</title>
+</head>
+<body>
+<script type='text/javascript' >
+  function count()
+  {
+    var stock = 5;
+    var sales = 3;
+    return stock - sales;
+  }
+  var stock = 0;
+  var c = count();
+
+  alert("c is "+c+" and stock is "+stock);
+  //alert(sales); error
+
+</script>
+</body>
+</html>

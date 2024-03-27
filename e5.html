@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form name="myForm">
+  <input type="button" name="myButton" value="Press Me">
+</form>
+<script type="text/javascript">
+  document.myForm.myButton.onclick = function() { alert('myButton was pressed'); };
+</script>
+<br/>
+<form name="myForm2">
+<select name="mySelect"	onchange="alert(mySelect.options.selectedIndex) ">
+  <option value="">Please Select</option>
+  <option value="HOCK">Hockey</option>
+  <option value="RUG" selected>Rugby</option>
+  <option value="GOLF">Golf</option>
+  <option value="TENNIS">Tennis</option>
+  </select>
+
+<input
+    type="button"
+    name="myButton"
+    value="Press Me 2"
+    onClick="alert('myButton was pressed')">
+
+</form>
+
+
+</body>
+</html>

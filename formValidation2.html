@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validation</title>
+  <script type="text/javascript">
+    var errorMessage = {
+      "name": "Name is required",
+      "pass": "Password is required",
+      "gender": "Gender is required",
+      "city": "City is required",
+      "lang": "At least one Language checkbox should be checked"
+    };
+
+    function validateField(fieldId) {
+      var value = document.myForm[fieldId].value.trim();
+      var errorSpan = document.getElementById(fieldId + "Error");
+      if (fieldId === "lang") {
+        // Special handling for checkboxes
+        var checkboxes = document.querySelectorAll('input[name="lang"]:checked');
+        if (checkboxes.length === 0) {
+          errorSpan.innerHTML = errorMessage[fieldId];
+        } else {
+          errorSpan.innerHTML = "";
+        }
+      } else if (fieldId === "gender") {
+        // Special handling for radio buttons
+        var selectedGender = document.querySelector('input[name="gender"]:checked');
+        if (!selectedGender) {
+          errorSpan.innerHTML = errorMessage[fieldId];
+        } else {
+          errorSpan.innerHTML = "";
+        }
+      } else if (value === "") {
+        errorSpan.innerHTML = errorMessage[fieldId];
+      } else {
+        errorSpan.innerHTML = "";
+      }
+    }
+
+    function check() {
+      var isValid = true;
+      ["name", "pass", "gender", "city", "lang"].forEach(function(fieldId) {
+        validateField(fieldId);
+        if (document.getElementById(fieldId + "Error").innerHTML !== "") {
+          isValid = false;
+        }
+      });
+      return isValid;
+    }
+  </script>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<form method="POST" action="formSubmittedSuccessfully.html" name="myForm" onsubmit="return check();">
+  <table >
+    <tr>
+      <td>Name</td>
+      <td>
+        <input type="text" name="name" size="20"  onblur="validateField('name')"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="nameError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>Pass</td>
+      <td>
+        <input type="password" name="pass" size="20"  onblur="validateField('pass')"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="passError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td>
+        <input type="radio" name="gender" value="M" onblur="validateField('gender')"/>Male
+        <input type="radio" name="gender" value="F" onblur="validateField('gender')"/>Female
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="genderError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td>
+        <select size="1" name="city"  onblur="validateField('city')">
+          <option value="">Please Select</option>
+          <option value="cairo">Cairo</option>
+          <option value="paris">Paris</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="cityError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>Languages</td>
+      <td onclick="validateField('lang')">
+        <input type="checkbox" name="lang" value="ar"/>ar
+        <input type="checkbox" name="lang" value="en"/>en
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="langError" class="error" ></span></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" value="OK"/>
+      </td>
+    </tr>
+  </table>
+
+
+</form>
+</body>
+</html>

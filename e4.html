@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example 4</title>
+  <script type='text/javascript' >
+    var x = new Array();
+    for(var i=0; i< 5; i++)
+    {
+      x[i] = i;
+    }
+    var total = 0;
+    for(var i=0; i< x.length; i++)
+    {
+      total = total + x[i];
+    }
+    console.log(total);
+
+    var t = new Array();
+    t["E100"] = "Java is great";
+    t["E102"] = "OOP is a must";
+    t["E103"] = "DB is where you save your info";
+
+    console.log(t["E100"]);
+    console.log(t["E102"]);
+    console.log(t.E103);
+
+    for (var key in t)
+    {
+      console.log(key+" ==> "+t[key]);
+    }
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

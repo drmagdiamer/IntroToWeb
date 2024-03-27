@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type='text/javascript' >
+function max()
+{
+var max = Number.NEGATIVE_INFINITY;
+for(var i = 0; i < arguments.length; i++)
+{
+if (arguments[i] > max)
+max = arguments[i];
+}
+return max;
+}
+var largest = max(1, 10, 100, 2, 3, 1000, 4, 5, 10000, 6);
+alert(largest);
+
+function displayToggle() {
+  var target = document.getElementById('a1');
+  var display = target.style.display;
+  if (display == "none") {
+    target.style.display = "";
+  } else {
+    target.style.display = "none";
+  }
+}
+
+</script>
+<button onclick="displayToggle()">Toggle</button>
+<p id="a1">This is a paragraph</p>
+
+
+</body>
+</html>

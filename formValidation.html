@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><!DOCTYPE html>
+    <html>
+    <head>
+    <title>Form Validation</title>
+  <script type="text/javascript">
+    function check() {
+      var isValid = true; // Assume form is valid initially
+      var errorMessage = [];
+      errorMessage["name"] = "Name is required";
+      errorMessage["pass"] = "Password is required";
+      errorMessage["pass"]= "Gender is required";
+      errorMessage["city"] = "City is required";
+      errorMessage["lang"] = "At least one Language checkbox should be checked";
+      var fieldsToCheck = ["name", "pass", "gender", "city", "lang"];
+      // Reset previous errors
+      fieldsToCheck.forEach(function(field) {
+        document.getElementById(field + "Error").innerHTML = "";
+      });
+      // Check name
+      if (document.myForm.name.value.trim() === "") {
+        document.getElementById("nameError").innerHTML = errorMessage["name"];
+        isValid = false;
+      }
+      // Check password
+      if (document.myForm.pass.value.trim() === "") {
+        document.getElementById("passError").innerHTML = errorMessage["pass"];
+        isValid = false;
+      }
+      // Check gender
+      if (!document.myForm.gender.value) {
+        document.getElementById("genderError").innerHTML = errorMessage["pass"];
+        isValid = false;
+      }
+      // Check city
+      if (document.myForm.city.value === "") {
+        document.getElementById("cityError").innerHTML = errorMessage["city"];
+        isValid = false;
+      }
+      // Check languages (at least one checkbox should be checked)
+      var checkboxes = document.querySelectorAll('input[name="lang"]:checked');
+      if (checkboxes.length === 0) {
+        document.getElementById("langError").innerHTML = errorMessage["lang"] ;
+        isValid = false;
+      }
+      return isValid; // Return the overall validity of the form
+    }
+  </script>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<form method="POST" action="formSubmittedSuccessfully.html" name="myForm" onsubmit="return check();">
+  <table >
+    <tr>
+      <td>Name</td>
+      <td>
+        <input type="text" name="name" size="20"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="nameError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>Pass</td>
+      <td>
+        <input type="password" name="pass" size="20"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="passError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td>
+        <input type="radio" name="gender" value="M"/>Male
+        <input type="radio" name="gender" value="F"/>Female
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="genderError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td>
+        <select size="1" name="city">
+          <option value="">Please Select</option>
+          <option value="cairo">Cairo</option>
+          <option value="paris">Paris</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="cityError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td>Languages</td>
+      <td>
+        <input type="checkbox" name="lang" value="ar"/>ar
+        <input type="checkbox" name="lang" value="en"/>en
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><span id="langError" class="error"></span></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="submit" value="OK"/>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
